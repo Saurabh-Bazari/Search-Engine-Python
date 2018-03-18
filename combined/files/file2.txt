@@ -1,0 +1,250 @@
+SOFTWARE DESIGN
+• Orientation (X 45°, Y 0°, Z 0°)
+In scenario of a change in attention, professor is notified by a socket emit call and this
+event is recorded in the database with the session details which can later be accessed by
+both the professor and student after logging into the system portal.
+32 Design Overview
+2.4 System Interfaces and Implementing Technologies
+2.4.1 User Interfaces
+The user interface will allow the instructor and students to establish a socket connection
+between their devices. Thereafter the instructor will be able to get real time statistics
+of the attention span of the attendees.
+2.4.2 Hardware Interfaces
+The devices carried by the students need to measure the shaking frequency, distance and
+orientation, this will be done by using the sensors: gyroscope, accelerometer, proximity
+sensor which will be interfaced using the Android Sensor Manager Library.
+2.4.3 Software Interfaces
+The sensor data collected will be stored in a relational MySQL database. Node-mysql
+pooling will be used to update this database when students’ device emit socket message
+to the professors device.
+Further, the portal for application will be written in Node.JS framework.
+2.4.4 Communications Interfaces
+For establishing the connection between the student and instructor devices in the form of
+a wireless local area network, wifi will be used and Node.JS socket communication library
+will be used to implement the two way socket communication between the devices.
+2.5 Design and Implementation Constraints
+For the above purpose of implementing the app, we are forbidden from using the camera
+for measuring the attention. [1] The students might exploit the sensors used to portray
+themselves as paying attention even when they are not.
+This gives a false positive in cases when the student uses a stand to maintain the
+orientation rendering the accelerometer and gyroscopic functions redundant.
+2.6 Assumptions and Dependencies
+We assume the presence of an IT-enabled large classroom with the availability of a system
+that can display slides from the instructor to the students along with slide transitions
+is available. We assume that the devices owned by the students will be based on the
+Android Operating System.
+One assumption about the product is that it will always be used on mobile phones
+that have enough performance. If the phone does not have enough hardware resources
+available for the application, for example the users might have allocated them with other
+applications, there may be scenarios where the application does not work as intended
+42 Design Overview
+or even at all. Also, we assume the devices have sophisticated sensors to meet our
+requirements of measuring even minute shaking to make the software precise.
+53 Use Cases
+Figure 3.1 shows the pictorial view of the Use Cases.
+Figure 3.1: Use Case Diagram
+3.1 U1: Login
+Actors : Student, Professor (both are collectively referred to as the user)
+Scenario 1: Mainline Sequence:
+1. User : Requests the login page.
+63 Use Cases
+2. System : Prompts to enter details.
+3. User : Enter the details i.e username and password.
+4. System : Displays Login acknowledgement and available options.
+Scenario 2: At step 4 in mainline:
+4. System : Indicates error in case of incorrect and/or empty username and password
+combination.
+3.2 U2: Initiate Session
+Actors : Professor
+Precondition : The professor has logged in with his credentials.
+Scenario 1: Mainline Sequence:
+1. Professor : Select Session initiate option.
+2. System : Display prompt to enter course and class details.
+3. Professor : Enter the required values.
+4. System : Displays acknowledgement of creation or session and returns server ad-
+dress.
+Scenario 2: At step 4 of mainline sequence:
+4. System : Displays error if a problem is encountered while creating the session.
+Scenario 3: At step 4 of mainline sequence:
+4. System : Displays the message if some of the required information has not been
+entered and it displays a prompt to enter the missing information.
+3.3 U3: Join Session
+Actors : Student
+Precondition : Student is logged into the system and a session has been initiated
+by the professor.
+Scenario 1: Mainline Sequence:
+1. Student : Requests to Join the session.
+73 Use Cases
+2. System : Displays a prompt requesting the session address.
+3. Student : Enters the session address as directed by the professor.
+4. System : Shows a message acknowledging joining the session and requests for
+permission to monitor the sensors.
+5. Student : The student accepts the request for permission to monitor sensors.
+Scenario 2: At step 4 of mainline sequence:
+4. System : Shows an error message when he enters an incorrect session address and
+prompts to re enter the session address.
+Scenario 3: At step 5 of mainline sequence:
+5. Student : Rejects the permission to monitor sensors.
+6. System : Sends a message to the professor showing a student has not accepted
+3.4 U4: Monitor Attention Detail
+Actors : Professor
+Precondition : Both student and professor are logged in, the session is initiated by
+the professor and at least one student has joined the session and the student has given
+permission to monitor the sensors.
+Scenario 1: Mainline Sequence:
+1. System : Checks the sensor data and evaluates the values based on our norm and
+determines the attention to displays a message to the professor.
+2. Professor : Receives the message and acknowledges it.
+3. System : Notifies the student to pay attention.
+Scenario 2: At step 1 of mainline sequence:
+1. System : Checks sensor data and determines that the student is attentive and
+sends the message to professor.
+2. Professor : Receives the total count of the students paying attention
+83 Use Cases
+3.5 U5: View Past reports
+Actors : Student, Professor (both are collectively referred to as the user)
+Precondition : Previous sessions data has been recorded and the user is logged in
+to view the report.
+Scenario 1: Mainline Sequence:
+1. User : Selects the option of viewing the past report.
+2. System : Displays a prompt to enter the course details like the date and course
+name.
+3. User : Enters the required details of the needed class.
+4. System : Displays the attention statistics of the session for the specified class.
+Scenario 2: At step 4 of mainline sequence:
+4. System : Displays an error message that the particular class details are incomplete
+or incompatible and prompts to enter the correct details
+94 Object Oriented Model
+4.1 Domain Modelling
+4.1.1 Entity Objects
+1. SensorData
+2. Student
+3. Professor
+4.1.2 Controller Objects
+1. Socket : Server
+2. Socket : Client
+3. Monitor
+4.1.3 Boundary Objects
+1. Main Activity
+2. SensorEventListener
+4.2 Class Diagram
+Figure 4.1 shows the relationships between the classes/objects pictorially.
+4.3 Class Descriptions
+4.3.1 Main Activity
+Extends: Activity [6]
+Description: An activity is a single, focused thing that the user can do. Activity
+interact with the user and takes care of creating a window in which UI elements are
+places.
+104 Object Oriented Model
+Attributes
+1. private Monitor monitor;
+DESC: This object controls the activities related to the sensor data
+2. public Socket socket;
+DESC: This is a reference to the class that manages the connections between the
+student and instructor devices
+3. public Student stud;
+DESC: It stores the details of the student.
+4. public View view;
+DESC: It is a reference to the UI elements present in the mobile application running
+on students’ devices.
+Methods
+1. private Socket startConnection(string, string);
+INPUT: Server Address and Token
+OUTPUT: Reference to Socket connection object
+CALLED BY: The Event handler of the UI Element (Button - Start Connection)
+along with Text Views containing the server address and tokens.
+DESC: Verifies the tokens and server address and instantiates the socket object.
+2. protected void onCreate(Bundle savedInstanceState); [6]
+INPUT: A Bundle containing the activity’s previously frozen state
+OUTPUT: Void
+DESC: Called when the activity is first created. This method instantiates all the
+UI Elements (Views) and the Student class.
+3. private void authenticate(string, string);
+INPUT: email address, password of the student
+CALLED BY: The Event handler of the UI Element (Button - Login) along with
+Text Views containing the email address and password.
+DESC: Verifies the email address and password combination and fetches student
+data from database and fills stud object.
+4.3.2 Socket : IO.socket-client
+Inherited From: IO [7]
+Description: socket-client is a library class that allows establishment and management
+of the connection between the student and Professor devices. It will be instantiated on
+the student device and manage connection from students point of view.
+114 Object Oriented Model
+Attributes
+1. private String url;
+DESC: The Address of the server
+2. private String socket.id;
+DESC: Socket identifier
+Methods
+1. public Constructor: Socket(string);
+INPUT: Server Address
+CALLED BY: Main Activity::StartConnection
+DESC: Establishes the socket connection and registers all the event listeners.
+2. public void onConnectEventListener();
+Called By: Triggered when the connection is established [7]
+OUTPUT: Void
+DESC: Asks for Permission to access Sensors from the student.
+3. public void onDisconnectEventListener();
+Called By: Triggered when the connection is destroyed [7]
+OUTPUT: Void
+DESC: Informs student about connection problem.
+4. public void emit(string); [7]
+INPUT: Message string
+OUTPUT: Void
+DESC: Sends the message string to Instructor
+4.3.3 SensorData
+Description: The sensor data recordings encapsulation.
+Attributes
+1. public float accelGravityData[3]; [9]
+DESC: The Accelerometer reading
+2. public float proximityData;
+DESC: The Proximity Sensor reading
+3. public float rotationMatrix[16];
+DESC: The Gyroscope reading
+4.3.4 Monitor
+Description: Manages the sensor data and takes actions appropriate to the recordings.
+124 Object Oriented Model
+Attributes
+1. private SensorManager sm;
+DESC: It lets access to the student device’s sensors.
+2. private SensorData sd;
+DESC: Sensor Data Values.
+3. private bool attentionFlag
+DESC: Attention status of student
+4. private bool attentionFlagChanged;
+DESC: True if the Attention Flag just changed.
+5. private SensorEventListener sel;
+DESC: Implements the work that needs to be done when sensors trigger.
+Methods
+1. public Constructor: Monitor();
+CALLED BY: Socket::OnConnectEventListener
+DESC: Instantiates the sensor manager and registers all the event listeners for the
+sensors.
+2. public void checkAttention();
+CALLED By: SensorEventListener::onSensorChanged(SensorEvent event) [9]
+DESC: Sets the attention flag and checks if it changes and appropriately informs
+the Professor.
+ALGORITHM: For proper attention, following must be satisfied:
+a) Distance between student and device = 25cm(approx.)
+b) Shaking f requency <= 2/min
+c) Orientation (X 45°, Y 0°, Z 0°)
+4.3.5 SensorEventListener
+Description: Listens to the sensor Data [9]
+Methods
+1. public void onSensorChanged(SensorEvent event)
+DESC: Called when there is a new sensor event. [9]
+4.3.6 Socket : Server
+Description: A Socket is the fundamental class for interacting with browser clients. A
+Socket uses an underlying Client to communicate which is the student in this case [8]
+134 Object Oriented Model
+Attributes
+1. private String socketId;
+DESC: Socket identifier
+2. private Client socketClient;
+DESC: A reference to the underlying Client object. [8]
+Methods
+1. public Constructor: Socket();
+CALLED BY: UI Event Listener - Trigger by professor to start server.
+DESC: Establishes the socket Server to w
+24

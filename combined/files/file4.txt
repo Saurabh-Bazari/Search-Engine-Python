@@ -1,0 +1,56 @@
+Midlet: Send position and server response . .
+30Note of the author: Before starting the study of this report the reader must
+have a good understanding of the J2EE and EJB technologies. The concept of
+the project is presented without explicit specifications of EJB 2.1. If any doubt
+on J2EE technology, refer to [9, 2].
+Security is very important in some activities. Freeride, mountain walking or
+climbing, paragliding are those where accidents can be serious or fatal. Having
+the possibility to follow physically the position of a person on regular basis can
+be comfortable for family, relatives or others.
+The project is meant to propose a simple and portable solution for people to get
+traced during a trip. The application is web based and should be available for
+every people who have the possibility to
+1. Run a small Java application on its mobile phone.
+2. Has link between a GPS device and its mobile phone.
+3. Has Internet access.
+This concept is not new and a lot of applications involving GPS are available on
+the market: nowadays almost every new car is equipped with a GPS on board
+and help people in city or country side to find their road.
+The concept of this project is a bit different. We are not focusing on ”where are
+we?” but more on ”where he/she is?”. For this the idea is to use a cell phone which accepts to receive GPS coordinates and send them to a server able to the account of a register user (tracked person). Then from
+a web client, the user can be followed on a map in real time mode.
+Figure 1: GPS traker: General schema
+As mentioned above, there are already a lot of applications which use the geo-
+positioning. Garmin, one of the famous GPS manufacturer, proposes maps of
+almost every countries in the world ready to be download into their panel of
+GPS devices. Different kind of applications for different kind of public: road
+maps and tracking, topologic maps for technical job like geologist (for instance),
+flight’s map for pilots, etc.
+Also it exist, for mountain activities like freeride, hicking, those automatic sig-
+nalling systems which switch on as soon as the rider get cought by an avalanche
+for example. It transmits a radio signal to the closest relay and indicate the
+exact position of the victim. It helps for the search and often save lives. The
+portable TomTom GPS proposes a full navigation system with vocal indication.
+The list of geo-positioning applications is huge and a simple search on the In-
+ternet gives hundred web sites talking about the topic.
+The diagram (figure 2) shows the use cases for the application. There are
+3 actors, 10 use cases which represent for different action what actors can do
+with the system. The use case Start a track is in fact 2 use cases. A track
+can be started from the web client or from the mobile application (cell phone
+application). The use case Send a position is only available from the mobile
+5application. We will see in the architecture what is done where (mobile vs
+server application).use cases described in figure 2. All use cases are
+now described formally.
+Within the 3 actors, the manager has a special role and is automatically created
+with the user Id 1. It can do exactly what a standard user can do but has special
+rights that the others don’t have.
+The application will allow to do:
+Creation of users. Any user who wants to be followed needs to be register in
+the system first. The application will offer a web interface to enter the following
+Then the user receives a user Id (integer) and is recorded in the database.
+This part is done on the web client side. The password must be more than 4
+characters long. Any fields must be empty otherwise the user is not register.
+Modification of the user profile. Once logged, the user can modify its
+profile using the same data as above and same constraints.
+User login This web page is the first one in the system. The user must be
+identify in order to access any options. The web page contains two fields:
