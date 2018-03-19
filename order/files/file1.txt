@@ -1,0 +1,36 @@
+Apurva N Saraogi
+Roll Number: 160101013
+B.Tech undergraduate
+Indian Institute of Technology Guwahati
++91-8320527544
+apurva.apurva.saraogi9@gmail.com
+apurva9@iitg.ac.in
+www.linkedin.com/in/apurva9
+github.com/apurva91
+Education
+Degree/Certificate
+B.Tech
+Senior secondary
+Secondary
+Institute/Board
+Indian Institute of Technology, Guwahati
+CBSE board
+CBSE board
+CGPA/Percentage
+8.10 (Current)
+91.20%
+9.6
+Year
+2016 - Present
+2016
+2014
+Experience
+Technical Executive at CSEA IIT Guwahati
+Conducted lectures, coding competitions & technical fests on the campus.
+Apr 2017 - Present
+Full Stack Developer at Technothlon                                                                                  Sep 2017 - Present
+- For Organizers: An Interface to upload & manage registrations, schools &                        goo.gl/1oabmd
+centers.
+- For Students: Monthly online quizzes, download auto-generated certificates,
+a payment portal for online registrations for the exam.
+- For Admins: View & manage any registrations, manage website pa

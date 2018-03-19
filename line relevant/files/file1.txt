@@ -1,0 +1,248 @@
+www.ijecs.in
+International Journal Of Engineering And Computer Science ISSN: 2319-7242
+Volume 6 Issue 2 Feb. 2017, Page No. 20281-20284
+Index Copernicus Value (2015): 58.10, DOI: 10.18535/ijecs/v6i2.22
+Real Time College Bus Tracking Application for Android Smartphone
+Supriya Sinha 1 , Pooja Sahu 2 , Monika Zade 3 , Roshni Jambhulkar 4 , Prof. Shrikant V. Sonekar 5
+1, 2, 3 & 4
+Final Year Students of Department of Computer Science & Engineering,
+JD College of Engineering & Management, Maharashtra, India
+supriyasudeepsinha@gmail.com 1 , poojasahu9595@gmail.com 2 , monikazade23@gmail.com 3 , roshnijambhulkar2@gmail.com 4
+5
+Head of the Department, Computer Science & Engineering,
+JD College of Engineering & Management, Maharashtra, India
+shrikantsonekar@gmail.com 5
+Abstract: This paper proposes a Real-Time College Bus Tracking Application which runs on Android smart phones. This enables students
+to find out the location of the bus so that they won’t get late or won’t arrive at the stop too early. The main purpose of this application is to
+provide exact location of the student’s respective buses in Google Maps besides providing information like bus details, driver details, stops,
+contact number, routes, etc. This application may be widely used by the college students since Android smart phones have become common
+and affordable for all. It is a real time system as the current location of the bus is updated every moment in the form of latitude and
+longitude which is received by the students through their application on Google maps. The application also estimates the time required to
+reach a particular stop on its route. The application uses client-server technology
+Keywords: GPS, Google Maps, JVM.
+1. Introduction
+Android has become very popular in the world since it is an
+open source and there are no extra fees for Java Virtual
+Machine (JVM). In today‟s world, the time is more important
+for students. Being a product of high technology, mobile
+phones are more widely used and are becoming more and more popular. A vehicle tracking system is a commonly used
+application for tracking vehicles. Due to traffic congestion and
+road works, most of the buses are delayed. People have to wait
+for their bus at the bus stops for a long time without even
+knowing when the bus will arrive. Thus, the arrival time of the
+bus cannot be guaranteed. The main focus of the project is to
+save the waiting time of students and provide them the details
+of the bus.
+2. Literature Survey
+Dynamic Bus Time-table Using GPS [1] is a GPS based and
+manual system designed to display the real-time location and
+timetable of buses which can be useful for any public transport
+system. The system requires working internet connection and
+may or may not be GPS tracker.
+Bus Locator via SMS using Android Application [2] uploads
+the current location of the bus to the server. The server then
+sends an SMS to all the registered students those are about to
+board at the bus stop. Here the driver‟s mobile phone is used as
+a GPS receiver. It is a tiresome process where the details of all
+the students are to be kept and updated time to time. The server
+is overloaded every now and then to get details of student at
+every stop.
+Real time Bus Monitoring System using GPS [3] displays the
+current locations of the bus. The system consisted of a
+transmitter installed on the buses and receiver boards installed
+on the bus stops. It provided the relevant bus routes and other
+information their clients.
+Real Time Web Based Bus Tracking System [9] provides the
+relevant information regarding all the bus going from user‟s
+source to destination. The system is operated by GPS which is
+attached with every bus. It uses external hardware set-up for its
+implementation.
+3. Android
+Android is an open source and Linux based operating system
+for smart phones, tablet computers and android wearable
+devices like watches. It is developed by Google and later the
+OHA (Open Handset Alliance. The main focus of android
+project is to create a fruitful real-world product that enhances
+the mobile experience for users. [11]
+The important features of android are given below:
+
+
+
+Open Source
+Easy to customize the Android Platform.
+A lot of mobile applications can be chosen by the
+customer.
+ Provides many appealing features like weather details,
+opening screen, live RSS (Really Simple Syndication)
+feeds etc.
+ Provides support for messaging services(SMS and
+MMS), web browser, storage (SQLite), connectivity
+(GSM, CDMA, Blue Tooth, Wi-Fi etc.), media, handset
+layout etc.
+4. Proposed System
+The proposed system provides the exact location of the bus to
+the students and staffs from their location. Along with this, it
+also provides the following features:
+Details like Bus Number, Driver‟s Contact Number, Bus
+Route, Stops, etc.
+ Authentication for Admin, Driver, Registered College
+Students and college staffs.
+ Admin has the facility to send SMS to intended driver
+and students in case of emergency.
+ If the driver is not in network area , still the system will
+update the location of the bus to the students and staffs
+by using average speed of bus and the fixed route
+
+Supriya Sinha, IJECS Volume 6 Issue 2 Feb., 2017 Page No.20281-20284
+Page 20281DOI: 10.18535/ijecs/v6i2.22
+5. System Description
+5.1
+System Architecture
+There are three modules in our application:
+1.
+2.
+3.
+Administration
+Driver
+Bus Information
+Figure 1: System Architecture
+5.2
+Modules Description
+Figure 2: Flow Diagram for Administration Module
+When Administrator enters into the Administration module,
+following screen will be provided for him to enter login
+credentials.
+1) Administration:
+This module is for the bus administrator for updating the
+information that is there in the server when required. It includes
+authority to update Driver name, Driver Contact Number,
+Route, Stops, etc. The administrator needs to log in before
+editing or updating details. Only administrator is the authorized
+user of this module. The administrator has been given a
+privilege of sending text messages to bus drivers and to the
+students of a particular route. It won‟t be charged to the
+administrator provided that his internet connection is in
+enabled mode. We are using way2sms services to accomplish
+this.
+The following figure shows the flow of this module.
+Figure 3: Administration Login Page
+2) Driver:
+This module is for the bus driver. The authorized bus drivers
+are provided with their unique log in credentials. They need to
+log in and then have to start their location service before
+driving. The current location of the bus will be updated from
+driver‟s mobile to the server every moment in the form of
+Supriya Sinha, IJECS Volume 6 Issue 2 Feb., 2017 Page No.20281-20284
+Page 20282DOI: 10.18535/ijecs/v6i2.22
+latitude and longitude. The location of the bus is visible in
+Google Maps when asked for.
+The following figure shows the flow of this module.
+them to manage their time and arrive at their stop at the proper
+time, neither too early nor late.
+The following figure shows the flow of this module.
+Figure 4: Flow Diagram for Driver Module
+When Driver enters into the Driver module, following screen
+will be provided for him to enter login credentials.
+Figure 6: Flow Diagram for Bus Information Module
+When Student or Staff enters into this module, they need to
+enter their credentials and after successful log in they will get
+the following screen to view bus details.
+Figure 5: Driver Login Page
+3) Bus Information:
+This is the most important module and is the whole and soul of
+the system. The users of this module need to log in with their
+unique ID provided by the college management. They can get
+access to the details of all the buses of college through their
+phones. Here they will get all bus and driver related
+information offline too. Students can track the location of their
+bus from any location. Student and staff must make sure that
+their location service is active. The can also get the estimated
+time of arrival of bus at their respective stops. This will help
+Figure 7: List of available bus routes
+6. Future Enhancement
+The following features can be added up as future
+enhancements:
+ A feature can be added for parents, where they could be
+given a privilege of receiving a text message that their
+ward had board the bus safely as soon as they get into the
+bus.
+Supriya Sinha, IJECS Volume 6 Issue 2 Feb., 2017 Page No.20281-20284
+Page 20283DOI: 10.18535/ijecs/v6i2.22
+
+Managing of public transports likes auto-rickshaws and
+trains
+7. Conclusion
+We developed an Android Application to track the college
+buses and provide relevant information to their users. This
+paper has described the design and architecture of our college
+bus tracking system. Our system is composed of smart phones
+and a server. The system is able to demonstrate its performance
+to track college bus from any area. Furthermore, our system is
+low-cost as it doesn‟t require any external hardware for
+location tracking.
+[9] Manini Kumbhar, Meghana Survase, Pratibha Mastud,
+Avdhut Salunke,Shrinivas Sirdeshpande, “Real Time Web
+Based Bus Tracking System” International Research
+Journal of Engineering and Technology (IRJET), e-ISSN:
+2395 -0056 Volume: 03 Issue: Feb-2016.
+[10] Mr. Pradip Suresh Mane, Prof. Vaishali Khairnar,
+“Analysis of Bus Tracking System Using Gps on Smart
+Phones” IOSR Journal of Computer Engineering (IOSR-
+JCE) , ISSN: 2347–8586, Vol.3, Issue 3, 2015,
+Page.1057-1061.
+[11] Javapoint.com, „What is Android‟ 2012. [Online].
+Available:
+http://www.javatpoint.com/android-what-
+where-and-why. [Accessed: 23- Jun- 2014].
+Acknowledgement
+We would like to express our intense honor and deep regard to
+our project guide Prof. Shrikant V. Sonekar for his guidance
+and constant encouragement for carrying out the project.
+Working under him was a great experience for us. He kept us
+going, and this would not have been possible without him.
+References
+[1] Gunjal Sunil N. , Joshi Ajinkya V. , Gosavi Swapnil C. ,
+Kshirsagar Vyanktesh B, “Dynamic Bus Timetable Using
+GPS” International Journal of Advanced Research in
+Computer Engineering & Technology (IJARCET) , ISSN
+:2278-1323, Volume 3, Issue 3, March 2014.
+[2] Karan Punjabi, Pooja Bolaj, Pratibha Mantur, Sneha
+Wali, “Bus Locator via SMS Using Android Application”
+International Journal of Computer Science and
+Information Technologies (IJCSIT) , ISSN :0975-9646,
+Volume 5(2), 2014.
+[3] Dr.(Mrs.) Saylee Gharge, Manal Chhaya, Gaurav
+Chheda, Jitesh Deshpande, Niket Gajra, “Real Time Bus
+Monitoring System Using GPS” Engineering Science and
+Technology: An International Journal (ESTIJ), ISSN:
+2250-3498, Volume 2, Number 3, June 2012.
+[4] Amol Dhumal, Amol Naikoji, Yutika Patwa, Manali
+Shilimkar, Prof. M. K. Nighot, “Survey Paper on Vehicle
+Tracking System using GPS and Android” International
+Journal of Advanced Research in Computer Engineering
+& Technology (IJARCET), ISSN: 2278 – 1323, Volume
+3 Issue 11, November 2014.
+[5] S. Priya , B. Prabhavathi, P. Shanmuga Priya , B.
+Shanthini, “An Android Application for Tracking College
+Bus Using Google Map”
+International Journal of
+Computer Science and Engineering Communications,
+ISSN: 2347–8586, Vol.3, Issue 3, 2015, Page.1057-1061.
+[6] G. Kiran Kumar, C.B. Aishwarya, A. Sai Mounika,
+“College Bus Tracking Android Application using GPS”
+International Journal of New Innovations in Engineering
+and Technology, ISSN: 2319-6319, Volume 4, Issue 4,
+April 2016.
+[7] G. Jemilda, R. Bala Krishnan, B. Johnson, G. Linga
+Sangeeth, “Mobile Application for College Bus Tracking”
+International Journal of Computer Science and Mobile
+Computing, ISSN: 2320-088X, Volume 4, Issue 3, March
+2015.
+[8] SeokJu Lee, Girma Tewolde, Jaerock Kwon, “Design and
+Implementation of Vehicle Tracking System Using
+GPS/GSM/GPRS Technology and Smart Phone
+Application”
+IEEE World Forum of Internet of
+Things(WF-IoT), March 2014.
+Supriya Sinha, IJECS Volume 6 Issue 2 Feb., 2017 Page No.20281-20284
+Page 20284
